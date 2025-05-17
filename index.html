@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kanupriya Guha | Portfolio</title>
+  
+  <!-- AOS (Animate On Scroll) CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+
+  <!-- Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- Custom CSS -->
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #f9f9f9;
+      color: #333;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #222;
+      color: white;
+      padding: 20px;
+    }
+
+    nav {
+      max-width: 1000px;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    section {
+      padding: 80px 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    #hero {
+      text-align: center;
+      padding-top: 100px;
+    }
+
+    #hero h2 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    #hero p {
+      font-size: 1.2rem;
+      color: #666;
+    }
+
+    h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .project-card {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .project-card a {
+      color: #007BFF;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    footer {
+      background: #222;
+      color: white;
+      text-align: center;
+      padding: 20px;
+      margin-top: 40px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <nav>
+      <h1>Kanupriya Guha</h1>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="hero" data-aos="fade-in">
+    <h2>Hi, I'm Kanupriya</h2>
+    <p>Data Scientist | Business Analyst | Developer</p>
+  </section>
+
+  <section id="about" data-aos="fade-up">
+    <h2>About Me</h2>
+    <p>
+      I am a Master’s student in Data Science with a concentration in Business Analytics at Rowan University. 
+      I’m passionate about data storytelling, insights generation, and building solutions that make an impact. 
+      I have experience in Python, SQL, R, Tableau, and machine learning.
+    </p>
+  </section>
+
+  <section id="projects" data-aos="fade-up">
+    <h2>Projects</h2>
+    
+    <div class="project-card" data-aos="zoom-in-up">
+      <h3>Indian Grocery Delivery App</h3>
+      <p>Built a delivery app prototype using Flask, Firebase, and React to bring Indian groceries to the doorstep.</p>
+      <a href="#">View Project</a>
+    </div>
+
+    <div class="project-card" data-aos="zoom-in-up" data-aos-delay="100">
+      <h3>Alumni Analytics Dashboard</h3>
+      <p>Developed an interactive dashboard using Tableau to visualize alumni engagement trends.</p>
+      <a href="#">View Dashboard</a>
+    </div>
+
+    <div class="project-card" data-aos="zoom-in-up" data-aos-delay="200">
+      <h3>Resume Keyword Matcher</h3>
+      <p>Created a tool to match job descriptions with resumes using NLP and cosine similarity.</p>
+      <a href="#">View GitHub</a>
+    </div>
+  </section>
+
+  <section id="contact" data-aos="fade-up">
+    <h2>Contact Me</h2>
+    <p>Email: kanupriya@example.com</p>
+    <p>LinkedIn: <a href="https://linkedin.com/in/yourprofile" target="_blank">yourprofile</a></p>
+    <p>GitHub: <a href="https://github.com/yourusername" target="_blank">yourusername</a></p>
+  </section>
+
+  <footer>
+    <p>© 2025 Kanupriya Guha</p>
+  </footer>
+
+  <!-- AOS Script -->
+  <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
