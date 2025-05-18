@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" >
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -20,61 +20,38 @@
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 
   <style>
-    /* Reset and base */
+    /* CSS Variables for black & white theme */
+    :root {
+      --bg-color: #121212;
+      --bg-gradient: linear-gradient(315deg, #121212 0%, #1e1e1e 74%, #2a2a2a 100%);
+      --text-color: #e5e5e5;
+      --accent-color: #f0f0f0;
+      --accent-dark: #cfcfcf;
+      --btn-bg: #1f1f1f;
+      --btn-hover-bg: #444444;
+      --shadow-color: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Reset and base styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    html {
-      scroll-behavior: smooth;
-    }
     body {
       font-family: 'Poppins', sans-serif;
-      background-color: var(--bg);
+      background-color: var(--bg-color);
       background-image: var(--bg-gradient);
-      color: var(--text);
+      color: var(--text-color);
       line-height: 1.6;
-      transition: background-color 0.5s, color 0.5s;
+      scroll-behavior: smooth;
     }
     a {
-      color: var(--accent);
+      color: var(--accent-color);
       text-decoration: none;
-      transition: color 0.3s ease;
     }
     a:hover {
       text-decoration: underline;
-      color: var(--accent-hover);
-    }
-
-    /* CSS Variables for theme */
-    :root {
-      --bg: #0f2027;
-      --bg-gradient: linear-gradient(315deg, #0f2027 0%, #203a43 74%, #2c5364 100%);
-      --text: #eee;
-      --accent: #00e5ff;
-      --accent-hover: #00fff7;
-      --nav-bg: rgba(15, 32, 39, 0.95);
-      --nav-shadow: rgba(0, 0, 0, 0.3);
-      --card-bg: #142d33;
-      --card-shadow: #00e5ff33;
-      --btn-bg: #00e5ff;
-      --btn-color: #0f2027;
-      --btn-hover-bg: #00fff7;
-    }
-    .light-theme {
-      --bg: #f5f8fa;
-      --bg-gradient: linear-gradient(315deg, #f5f8fa 0%, #cbd9e6 74%, #a5b8cc 100%);
-      --text: #222;
-      --accent: #0077cc;
-      --accent-hover: #005fa3;
-      --nav-bg: rgba(245, 248, 250, 0.95);
-      --nav-shadow: rgba(0, 0, 0, 0.1);
-      --card-bg: #fff;
-      --card-shadow: #0077cc33;
-      --btn-bg: #0077cc;
-      --btn-color: #fff;
-      --btn-hover-bg: #005fa3;
     }
 
     /* Navbar */
@@ -82,11 +59,10 @@
       position: fixed;
       top: 0;
       width: 100%;
-      background: var(--nav-bg);
+      background: rgba(18, 18, 18, 0.95);
       backdrop-filter: blur(10px);
       z-index: 999;
-      box-shadow: 0 2px 5px var(--nav-shadow);
-      transition: background 0.5s, box-shadow 0.5s;
+      box-shadow: 0 2px 5px var(--shadow-color);
     }
     nav {
       max-width: 1000px;
@@ -97,10 +73,10 @@
       padding: 1rem 2rem;
     }
     .logo {
-      font-weight: 700;
+      font-weight: 600;
       font-size: 1.8rem;
       letter-spacing: 1.5px;
-      color: var(--accent);
+      color: var(--accent-color);
       cursor: pointer;
       user-select: none;
     }
@@ -109,30 +85,16 @@
       display: flex;
       gap: 2rem;
     }
-    ul.nav-links li {
-      position: relative;
-    }
     ul.nav-links li a {
       font-weight: 600;
       font-size: 1rem;
       padding: 0.25rem 0;
-      color: var(--text);
-      position: relative;
       transition: color 0.3s ease;
     }
     ul.nav-links li a.active,
     ul.nav-links li a:hover {
-      color: var(--accent-hover);
-    }
-    ul.nav-links li a.active::after {
-      content: "";
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      bottom: -6px;
-      left: 0;
-      background-color: var(--accent-hover);
-      border-radius: 2px;
+      color: var(--accent-dark);
+      border-bottom: 2px solid var(--accent-dark);
     }
 
     /* Hamburger Menu (Mobile) */
@@ -141,23 +103,12 @@
       flex-direction: column;
       cursor: pointer;
       gap: 5px;
-      user-select: none;
     }
     .hamburger div {
       width: 25px;
       height: 3px;
-      background-color: var(--accent);
+      background-color: var(--accent-color);
       border-radius: 3px;
-      transition: all 0.3s ease;
-    }
-    .hamburger.open div:nth-child(1) {
-      transform: rotate(45deg) translate(5px, 5px);
-    }
-    .hamburger.open div:nth-child(2) {
-      opacity: 0;
-    }
-    .hamburger.open div:nth-child(3) {
-      transform: rotate(-45deg) translate(5px, -5px);
     }
 
     /* Responsive Nav */
@@ -167,15 +118,13 @@
         top: 65px;
         right: 0;
         height: calc(100% - 65px);
-        background: var(--card-bg);
+        background: #1e1e1e;
         flex-direction: column;
         width: 200px;
         padding: 2rem;
         transform: translateX(100%);
         transition: transform 0.3s ease-in-out;
-        box-shadow: -2px 0 15px var(--card-shadow);
-        border-radius: 0 0 0 12px;
-        z-index: 998;
+        box-shadow: -2px 0 15px var(--shadow-color);
       }
       ul.nav-links.open {
         transform: translateX(0);
@@ -198,119 +147,62 @@
       text-align: center;
       padding: 0 2rem;
       gap: 1rem;
-      position: relative;
-      overflow: hidden;
+      user-select: none;
     }
     #hero h1 {
-      font-size: 3.5rem;
+      font-size: 3rem;
       font-weight: 700;
-      color: var(--accent);
-      z-index: 1;
-      user-select: none;
+      color: var(--accent-color);
     }
     #hero .typewriter {
       font-weight: 600;
-      font-size: 1.75rem;
-      color: var(--text);
+      font-size: 1.5rem;
+      color: var(--accent-dark);
       min-height: 2rem;
       letter-spacing: 2px;
-      z-index: 1;
-      font-family: monospace;
-      white-space: nowrap;
-      border-right: 3px solid var(--accent);
-      animation: blink-caret 0.75s step-end infinite;
-      user-select: none;
+      font-style: italic;
     }
     #hero p {
-      color: var(--text);
+      color: #aaa;
       max-width: 600px;
-      font-size: 1.25rem;
-      z-index: 1;
+      font-size: 1.15rem;
     }
     #hero .btn {
       margin-top: 1.5rem;
       background-color: var(--btn-bg);
-      color: var(--btn-color);
+      color: var(--accent-color);
       font-weight: 700;
-      padding: 0.75rem 2.5rem;
+      padding: 0.75rem 2rem;
       border-radius: 50px;
-      border: none;
+      border: 1.5px solid var(--accent-dark);
       cursor: pointer;
-      transition: background-color 0.3s ease;
-      box-shadow: 0 4px 15px var(--btn-bg);
-      z-index: 1;
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+      box-shadow: 0 4px 15px var(--shadow-color);
+      user-select: none;
     }
     #hero .btn:hover {
       background-color: var(--btn-hover-bg);
-    }
-
-    @keyframes blink-caret {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: var(--accent); }
-    }
-
-    /* Particles canvas */
-    #particles-js {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      pointer-events: none;
-      z-index: 0;
+      border-color: var(--accent-color);
     }
 
     /* Sections */
     section {
       max-width: 900px;
-      margin: 6rem auto 3rem;
+      margin: 5rem auto;
       padding: 0 1rem;
-      position: relative;
-      z-index: 2;
     }
     section h2 {
       font-size: 2.5rem;
       margin-bottom: 1.5rem;
-      color: var(--accent);
-      border-bottom: 2px solid var(--accent);
+      color: var(--accent-color);
+      border-bottom: 2px solid var(--accent-color);
       padding-bottom: 0.5rem;
       user-select: none;
     }
     section p {
       font-size: 1.1rem;
-      color: var(--text);
+      color: #ccc;
       line-height: 1.8;
-    }
-
-    /* Skill bars */
-    .skills {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
-    }
-    .skill {
-      background: var(--card-bg);
-      border-radius: 12px;
-      overflow: hidden;
-      box-shadow: 0 3px 8px var(--card-shadow);
-    }
-    .skill-name {
-      font-weight: 600;
-      padding: 0.5rem 1rem;
-      color: var(--accent);
-      user-select: none;
-    }
-    .skill-bar {
-      height: 18px;
-      background: #00e5ff44;
-      border-radius: 0 0 12px 12px;
-      overflow: hidden;
-    }
-    .skill-level {
-      height: 100%;
-      background: var(--btn-bg);
-      width: 0;
-      transition: width 2s ease;
     }
 
     /* Projects Grid */
@@ -320,159 +212,110 @@
       gap: 2rem;
     }
     .project-card {
-      background: var(--card-bg);
+      background: #1e1e1e;
       padding: 1.5rem;
       border-radius: 12px;
-      box-shadow: 0 4px 15px var(--card-shadow);
+      box-shadow: 0 4px 15px var(--shadow-color);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       cursor: pointer;
-      color: var(--text);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       user-select: none;
-      will-change: transform;
-      perspective: 1000px;
     }
-    .project-card:hover {
-      box-shadow: 0 10px 30px var(--btn-bg);
+    .project-card:hover,
+    .project-card:focus-within {
+      transform: translateY(-8px);
+      box-shadow: 0 10px 30px var(--accent-color);
+      outline: none;
     }
     .project-card h3 {
       margin-bottom: 0.5rem;
-      color: var(--accent);
+      color: var(--accent-color);
     }
     .project-card p {
       font-size: 1rem;
       margin-bottom: 1rem;
-      color: var(--text);
-      flex-grow: 1;
+      color: #bbb;
     }
     .project-card a {
       font-weight: 600;
-      color: var(--accent);
+      color: var(--accent-color);
       border-bottom: 1px solid transparent;
       transition: border-bottom 0.3s ease;
     }
-    .project-card a:hover {
-      border-bottom: 1px solid var(--accent);
+    .project-card a:hover,
+    .project-card a:focus {
+      border-bottom: 1px solid var(--accent-color);
+      outline: none;
+    }
+
+    /* Research Section */
+    #research p {
+      font-size: 1.1rem;
+      color: #ccc;
+      line-height: 1.7;
+    }
+    #research a {
+      color: var(--accent-color);
+      font-weight: 600;
+    }
+    #research a:hover,
+    #research a:focus {
+      text-decoration: underline;
+      outline: none;
+    }
+
+    /* Experience Section */
+    #experience ul {
+      list-style-type: disc;
+      margin-left: 1.5rem;
+      color: #bbb;
+      font-size: 1.1rem;
+      line-height: 1.7;
     }
 
     /* Contact */
     #contact p {
       font-size: 1.1rem;
       margin: 0.5rem 0;
-      color: var(--text);
+      color: var(--accent-color);
+      user-select: text;
     }
     #contact a {
-      color: var(--accent);
+      color: var(--accent-color);
       font-weight: 600;
     }
-    #contact a:hover {
+    #contact a:hover,
+    #contact a:focus {
       text-decoration: underline;
+      outline: none;
     }
 
     /* Footer */
     footer {
       text-align: center;
       padding: 1.5rem 1rem;
-      background: var(--card-bg);
-      color: var(--accent);
+      background: #1e1e1e;
+      color: var(--accent-color);
       font-weight: 600;
       margin-top: 4rem;
       letter-spacing: 2px;
       user-select: none;
     }
-
-    /* Modal */
-    #modal-overlay {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100vw; height: 100vh;
-      background: rgba(0,0,0,0.7);
-      display: none;
-      justify-content: center;
-      align-items: center;
-      z-index: 10000;
-      padding: 1rem;
-    }
-    #modal-overlay.active {
-      display: flex;
-    }
-    #modal {
-      background: var(--card-bg);
-      border-radius: 12px;
-      max-width: 600px;
-      width: 100%;
-      max-height: 90vh;
-      overflow-y: auto;
-      padding: 2rem;
-      box-shadow: 0 8px 20px var(--btn-bg);
-      position: relative;
-      color: var(--text);
-    }
-    #modal h3 {
-      color: var(--accent);
-      margin-bottom: 1rem;
-    }
-    #modal p {
-      margin-bottom: 1.5rem;
-      line-height: 1.6;
-    }
-    #modal a {
-      color: var(--accent);
-      font-weight: 700;
-      text-decoration: underline;
-    }
-    #modal-close {
-      position: absolute;
-      top: 10px;
-      right: 15px;
-      background: transparent;
-      border: none;
-      color: var(--accent);
-      font-size: 1.5rem;
-      cursor: pointer;
-      user-select: none;
-    }
-    #modal-close:hover {
-      color: var(--btn-hover-bg);
-    }
-
-    /* Dark/Light toggle button */
-    #theme-toggle {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--btn-bg);
-      color: var(--btn-color);
-      border: none;
-      border-radius: 50%;
-      width: 48px;
-      height: 48px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px var(--btn-bg);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      transition: background-color 0.3s ease;
-      z-index: 10001;
-    }
-    #theme-toggle:hover {
-      background: var(--btn-hover-bg);
-    }
   </style>
 </head>
 <body>
+
   <header>
     <nav>
-      <div class="logo" tabindex="0" aria-label="Kanupriya Guha Portfolio">Kanupriya Guha</div>
-      <ul class="nav-links" id="nav-links" role="menubar">
-        <li><a href="#hero" class="nav-link active" role="menuitem" tabindex="0">Home</a></li>
-        <li><a href="#about" class="nav-link" role="menuitem" tabindex="0">About</a></li>
-        <li><a href="#projects" class="nav-link" role="menuitem" tabindex="0">Projects</a></li>
-        <li><a href="#contact" class="nav-link" role="menuitem" tabindex="0">Contact</a></li>
+      <div class="logo" tabindex="0">Kanupriya Guha</div>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#research">Research</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#contact">Contact</a></li>
       </ul>
-      <div class="hamburger" id="hamburger" role="button" aria-label="Toggle menu" tabindex="0" aria-expanded="false" aria-controls="nav-links">
+      <div class="hamburger" id="hamburger" aria-label="Toggle menu" role="button" tabindex="0">
         <div></div>
         <div></div>
         <div></div>
@@ -480,273 +323,171 @@
     </nav>
   </header>
 
-  <section id="hero">
-    <canvas id="particles-js"></canvas>
-    <h1>Kanupriya Guha</h1>
-    <div class="typewriter" id="typewriter"></div>
-    <p>Data Scientist | Business Analytics Graduate | Python & SQL Enthusiast | Lifelong Learner</p>
-    <button class="btn" id="scroll-about">Learn More</button>
+  <section id="hero" aria-label="Introduction">
+    <h1>Hello, I'm Kanupriya Guha</h1>
+    <div class="typewriter" aria-live="polite" aria-atomic="true"></div>
+    <p>
+      Graduate Student | Data Scientist | Business Analytics Enthusiast <br />
+      Passionate about leveraging data to tell compelling stories and solve real-world problems.
+    </p>
+    <a href="#projects" class="btn" role="button">Explore My Work</a>
   </section>
 
-  <section id="about" data-aos="fade-up">
+  <section id="about" tabindex="0" aria-label="About me">
     <h2>About Me</h2>
-    <p>Hello! I'm Kanupriya, a passionate data scientist and business analytics graduate with strong skills in Python, SQL, and data visualization. I enjoy solving complex problems and creating meaningful insights through data.</p>
-
-    <div class="skills" aria-label="Skills proficiency bars">
-      <div class="skill">
-        <div class="skill-name">Python</div>
-        <div class="skill-bar" role="progressbar" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100"><div class="skill-level" data-level="90"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-name">SQL</div>
-        <div class="skill-bar" role="progressbar" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"><div class="skill-level" data-level="85"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-name">Power BI / Tableau</div>
-        <div class="skill-bar" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"><div class="skill-level" data-level="80"></div></div>
-      </div>
-      <div class="skill">
-        <div class="skill-name">Machine Learning</div>
-        <div class="skill-bar" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"><div class="skill-level" data-level="75"></div></div>
-      </div>
-    </div>
+    <p>
+      I am a graduate student pursuing a master's in Data Science with a focus on Business Analytics.
+      With over 2 years of hands-on experience in on-campus projects and internships, I excel at
+      combining technical expertise and business insight. I'm passionate about continuous learning and
+      innovation in data-driven decision making.
+    </p>
   </section>
 
-  <section id="projects" data-aos="fade-up">
+  <section id="projects" tabindex="0" aria-label="Projects">
     <h2>Projects</h2>
-    <div class="projects-grid" aria-live="polite">
-      <div class="project-card" tabindex="0" data-title="COVID-19 Data Analysis" data-description="A detailed analysis of COVID-19 trends using Python, pandas, and matplotlib. Explores infection rates, recovery, and mortality over time." data-link="https://github.com/KanupriyaGuha/covid19-analysis">
-        <h3>COVID-19 Data Analysis</h3>
-        <p>Python and pandas analysis of COVID-19 data trends.</p>
-        <a href="https://github.com/KanupriyaGuha/covid19-analysis" target="_blank" rel="noopener" tabindex="-1">View Repo</a>
-      </div>
-      <div class="project-card" tabindex="0" data-title="Data Science Portfolio" data-description="A collection of data analysis, machine learning, and visualization projects using Python and real datasets." data-link="https://github.com/KanupriyaGuha/data-science-portfolio">
-        <h3>Data Science Portfolio</h3>
-        <p>A collection of data analysis, machine learning, and visualization projects.</p>
-        <a href="https://github.com/KanupriyaGuha/data-science-portfolio" target="_blank" rel="noopener" tabindex="-1">View Repo</a>
-      </div>
-      <div class="project-card" tabindex="0" data-title="Business Analytics Dashboards" data-description="Interactive dashboards developed with Power BI and Tableau to deliver business insights and KPIs." data-link="https://github.com/KanupriyaGuha/business-analytics-dashboard">
-        <h3>Business Analytics Dashboards</h3>
-        <p>Interactive dashboards with Power BI and Tableau.</p>
-        <a href="https://github.com/KanupriyaGuha/business-analytics-dashboard" target="_blank" rel="noopener" tabindex="-1">View Repo</a>
-      </div>
+    <div class="projects-grid">
+
+      <article class="project-card" tabindex="0" aria-labelledby="proj1-title">
+        <h3 id="proj1-title">Visa Wizard</h3>
+        <p>An interactive tool designed to simplify the visa application process by guiding users step-by-step.</p>
+        <a href="https://github.com/KanupriyaGuha/Visa-Wizard" target="_blank" rel="noopener noreferrer" aria-label="View Visa Wizard repository on GitHub">View on GitHub</a>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-labelledby="proj2-title">
+        <h3 id="proj2-title">IMDb Movies Dataset with MongoDB and Matplotlib</h3>
+        <p>A comprehensive dataset project analyzing IMDb movie data using MongoDB for storage and Matplotlib for visualization.</p>
+        <a href="https://github.com/KanupriyaGuha/IMDb-Movies-Dataset-with-MongoDB-and-MatplotLib" target="_blank" rel="noopener noreferrer" aria-label="View IMDb Movies Dataset repository on GitHub">View on GitHub</a>
+      </article>
+
+      <article class="project-card" tabindex="0" aria-labelledby="proj3-title">
+        <h3 id="proj3-title">VAST Challenge 2018 MC 1 Fall 2023</h3>
+        <p>Data visualization and analytics project based on the VAST Challenge 2018 Mini Challenge 1 dataset.</p>
+        <a href="https://github.com/KanupriyaGuha/VAST-Challenge-2018-MC-1-Fall-2023-" target="_blank" rel="noopener noreferrer" aria-label="View VAST Challenge 2018 repository on GitHub">View on GitHub</a>
+      </article>
+
     </div>
   </section>
 
-  <section id="contact" data-aos="fade-up">
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:kanupriyaguha@example.com" target="_blank" rel="noopener">kanupriyaguha@example.com</a></p>
-    <p>GitHub: <a href="https://github.com/KanupriyaGuha" target="_blank" rel="noopener">github.com/KanupriyaGuha</a></p>
-    <p>LinkedIn: <a href="https://linkedin.com/in/kanupriyaguha" target="_blank" rel="noopener">linkedin.com/in/kanupriyaguha</a></p>
+  <section id="research" tabindex="0" aria-label="Research">
+    <h2>Research</h2>
+    <p>
+      <strong>Survey on Machine Learning Approaches to Study the Influence of Social Media on Academic Performance of Students</strong><br />
+      A comprehensive survey exploring machine learning methods applied to understand social media's impact on student academic outcomes.
+      <br />
+      <a href="http://navajyotijournal.org/Aug_2022/Survey%20on%20Machine%20Learning%20Approaches%20to%20Study%20the%20Influence%20of%20Social%20Media%20on%20Academic%20Performance%20of%20Students.pdf" target="_blank" rel="noopener noreferrer" aria-label="Read research paper PDF">Read the full paper</a>
+    </p>
+  </section>
+
+  <section id="experience" tabindex="0" aria-label="Professional Experience">
+    <h2>Experience</h2>
+    <ul>
+      <li><strong>On-campus research assistant:</strong> Assisted in data collection and analysis for university projects, applying machine learning algorithms and data visualization techniques.</li>
+      <li><strong>Internship at [Company Name]:</strong> Worked on real-world data science projects including cleaning large datasets, building predictive models, and reporting insights to stakeholders.</li>
+    </ul>
+  </section>
+
+  <section id="contact" tabindex="0" aria-label="Contact Information">
+    <h2>Contact</h2>
+    <p>
+      <i class="fab fa-github"></i> GitHub: <a href="https://github.com/KanupriyaGuha" target="_blank" rel="noopener noreferrer">github.com/KanupriyaGuha</a>
+    </p>
+    <p>
+      <i class="fab fa-linkedin"></i> LinkedIn: <a href="https://www.linkedin.com/in/kanupriyaguha/" target="_blank" rel="noopener noreferrer">linkedin.com/in/kanupriyaguha</a>
+    </p>
+    <p>
+      <i class="fas fa-envelope"></i> Email: <a href="mailto:guhakanupriya@gmail.com">guhakanupriya@gmail.com</a>
+    </p>
   </section>
 
   <footer>
     &copy; 2025 Kanupriya Guha. All rights reserved.
   </footer>
 
-  <!-- Modal -->
-  <div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
-    <div id="modal">
-      <button id="modal-close" aria-label="Close modal">&times;</button>
-      <h3 id="modal-title"></h3>
-      <p id="modal-description"></p>
-      <a id="modal-link" href="#" target="_blank" rel="noopener">View Repo</a>
-    </div>
-  </div>
-
-  <!-- Dark/Light toggle -->
-  <button id="theme-toggle" aria-label="Toggle dark/light theme" title="Toggle dark/light theme">
-    <i class="fas fa-moon"></i>
-  </button>
-
   <!-- AOS JS -->
   <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 
-  <!-- Particles.js CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
-
   <script>
-    // Initialize AOS
-    AOS.init({ once: true });
+    AOS.init({
+      duration: 800,
+      once: true,
+    });
 
     // Hamburger toggle
     const hamburger = document.getElementById('hamburger');
     const navLinks = document.getElementById('nav-links');
+
     hamburger.addEventListener('click', () => {
-      const expanded = hamburger.getAttribute('aria-expanded') === 'true';
-      hamburger.setAttribute('aria-expanded', !expanded);
       navLinks.classList.toggle('open');
-      hamburger.classList.toggle('open');
     });
-    // Also toggle hamburger with keyboard enter/space
+
+    // Keyboard accessibility for hamburger
     hamburger.addEventListener('keydown', e => {
       if (e.key === 'Enter' || e.key === ' ') {
         e.preventDefault();
-        hamburger.click();
+        navLinks.classList.toggle('open');
       }
     });
 
-    // Scrollspy for nav highlighting
+    // Highlight nav links on scroll
     const sections = document.querySelectorAll('section');
-    const navItems = document.querySelectorAll('.nav-link');
+    const navItems = document.querySelectorAll('ul.nav-links li a');
+
     window.addEventListener('scroll', () => {
       let current = '';
+      const scrollY = window.pageYOffset;
+
       sections.forEach(section => {
-        const sectionTop = section.offsetTop - 70;
-        if (pageYOffset >= sectionTop) {
+        const sectionTop = section.offsetTop - 80;
+        if (scrollY >= sectionTop) {
           current = section.getAttribute('id');
         }
       });
-      navItems.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === '#' + current) {
-          link.classList.add('active');
+
+      navItems.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === `#${current}`) {
+          a.classList.add('active');
         }
       });
-    });
-
-    // Smooth scroll from Hero button
-    document.getElementById('scroll-about').addEventListener('click', () => {
-      document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
     });
 
     // Typewriter effect
     const typewriterTexts = [
-      "Data Scientist.",
-      "Business Analytics Graduate.",
-      "Python & SQL Enthusiast.",
-      "Passionate Problem Solver.",
-      "Lifelong Learner."
+      'Graduate Student',
+      'Data Scientist',
+      'Business Analytics Enthusiast',
+      'Machine Learning Explorer',
+      'Problem Solver'
     ];
-    let typewriterIndex = 0;
+
+    const typewriterElement = document.querySelector('.typewriter');
+    let txtIndex = 0;
     let charIndex = 0;
-    const typewriterElement = document.getElementById('typewriter');
-    const typingSpeed = 100;
-    const erasingSpeed = 50;
-    const delayBetween = 2000;
+    let isDeleting = false;
+    let wait = 1500;
 
     function type() {
-      if (charIndex < typewriterTexts[typewriterIndex].length) {
-        typewriterElement.textContent += typewriterTexts[typewriterIndex].charAt(charIndex);
+      const currentTxt = typewriterTexts[txtIndex];
+      if (!isDeleting) {
+        typewriterElement.textContent = currentTxt.substring(0, charIndex + 1);
         charIndex++;
-        setTimeout(type, typingSpeed);
-      } else {
-        setTimeout(erase, delayBetween);
-      }
-    }
-
-    function erase() {
-      if (charIndex > 0) {
-        typewriterElement.textContent = typewriterTexts[typewriterIndex].substring(0, charIndex - 1);
-        charIndex--;
-        setTimeout(erase, erasingSpeed);
-      } else {
-        typewriterIndex = (typewriterIndex + 1) % typewriterTexts.length;
-        setTimeout(type, typingSpeed + 500);
-      }
-    }
-
-    document.addEventListener('DOMContentLoaded', () => {
-      setTimeout(type, 1000);
-    });
-
-    // Animate skill bars
-    const skillLevels = document.querySelectorAll('.skill-level');
-    skillLevels.forEach(bar => {
-      const level = bar.getAttribute('data-level');
-      bar.style.width = '0%';
-      setTimeout(() => {
-        bar.style.transition = 'width 2s ease-in-out';
-        bar.style.width = level + '%';
-      }, 500);
-    });
-
-    // Modal functionality for project cards
-    const modalOverlay = document.getElementById('modal-overlay');
-    const modalTitle = document.getElementById('modal-title');
-    const modalDescription = document.getElementById('modal-description');
-    const modalLink = document.getElementById('modal-link');
-    const modalClose = document.getElementById('modal-close');
-
-    const projectCards = document.querySelectorAll('.project-card');
-    projectCards.forEach(card => {
-      card.addEventListener('click', () => {
-        modalTitle.textContent = card.getAttribute('data-title');
-        modalDescription.textContent = card.getAttribute('data-description');
-        modalLink.href = card.getAttribute('data-link');
-        modalOverlay.style.display = 'flex';
-        modalOverlay.focus();
-      });
-      card.addEventListener('keydown', e => {
-        if (e.key === 'Enter' || e.key === ' ') {
-          e.preventDefault();
-          card.click();
+        if (charIndex === currentTxt.length) {
+          isDeleting = true;
+          setTimeout(type, wait);
+          return;
         }
-      });
-    });
-
-    modalClose.addEventListener('click', () => {
-      modalOverlay.style.display = 'none';
-    });
-
-    modalOverlay.addEventListener('click', (e) => {
-      if (e.target === modalOverlay) {
-        modalOverlay.style.display = 'none';
-      }
-    });
-
-    // Dark/light theme toggle
-    const themeToggle = document.getElementById('theme-toggle');
-    const body = document.body;
-    const moonIcon = '<i class="fas fa-moon"></i>';
-    const sunIcon = '<i class="fas fa-sun"></i>';
-
-    function setTheme(theme) {
-      if (theme === 'dark') {
-        body.classList.add('dark-theme');
-        themeToggle.innerHTML = sunIcon;
       } else {
-        body.classList.remove('dark-theme');
-        themeToggle.innerHTML = moonIcon;
+        typewriterElement.textContent = currentTxt.substring(0, charIndex - 1);
+        charIndex--;
+        if (charIndex === 0) {
+          isDeleting = false;
+          txtIndex = (txtIndex + 1) % typewriterTexts.length;
+        }
       }
-      localStorage.setItem('theme', theme);
+      setTimeout(type, isDeleting ? 75 : 150);
     }
-
-    themeToggle.addEventListener('click', () => {
-      if (body.classList.contains('dark-theme')) {
-        setTheme('light');
-      } else {
-        setTheme('dark');
-      }
-    });
-
-    // Load saved theme on page load
-    document.addEventListener('DOMContentLoaded', () => {
-      const savedTheme = localStorage.getItem('theme') || 'light';
-      setTheme(savedTheme);
-    });
-
-    // Particles.js config
-    particlesJS.load('particles-js', 'particles-config.json', () => {
-      console.log('Particles.js loaded.');
-    });
+    type();
   </script>
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
 </body>
-</html>Here's a fully accessible, professional, and clean portfolio webpage for Kanupriya Guha, a data scientist and business analytics graduate. It includes:
-
-- A header with accessible navigation and hamburger menu for mobile
-- A hero section with a typewriter effect introducing Kanupriya
-- About section with skill proficiency bars and ARIA roles for accessibility
-- Projects section with clickable project cards that open an accessible modal describing each project and linking to GitHub repos
-- Contact section with email and social links
-- Footer
-- Dark/light theme toggle saved in localStorage
-- Smooth scrolling, keyboard navigation, and ARIA attributes for screen reader friendliness
-- Particles.js background effect for subtle animation
-
-The inline CSS uses CSS variables for theming and responsiveness. The JavaScript handles interactivity, including keyboard accessibility, modal open/close, theme toggle, typewriter animation, skill bar animation, and responsive nav toggle.
-
----
-
-If you want me to generate the actual `particles-config.json` or help with deploying this portfolio or adding more features, just ask!
+</html>
